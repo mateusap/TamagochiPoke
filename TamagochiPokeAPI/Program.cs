@@ -2,27 +2,26 @@
 using TamagochiPokeAPI.Models;
 
 List<Pokemon> PokemonAdotados;
+TamagochiView Mensagens;
 PokemonAdotados = new List<Pokemon>();
+Mensagens = new TamagochiView();
+
 
 string opcaoJogador;
 int jogar = 1;
 while (jogar == 1)
 {
-    Console.WriteLine("Seja bem vindo ao centro de adoção!");
-    Console.WriteLine("Digite 1 para adotar um mascote virtual");
-    Console.WriteLine("Digite 3 para sair");
+    Mensagens.MenuInicial();
     opcaoJogador = Console.ReadLine();
+    Console.Clear();
 
     switch (opcaoJogador)
     {
         case "1":
             string opcaoSubMenu = "1", especies;
             Pokemon pokemon = new();
-            Console.WriteLine($"Escolha uma espécie:");
-            Console.WriteLine("SCYTHER");
-            Console.WriteLine("SANDSHREW");
-            Console.WriteLine();
-            especies = Console.ReadLine();
+            Mensagens.Titulo();
+            especies = Mensagens.MenuAdocao();
 
             while (opcaoJogador != "3")
             {
