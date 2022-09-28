@@ -7,11 +7,11 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using TamagochiPokeAPI.Models;
 
-namespace TamagochiPokeAPI
+namespace TamagochiPokeAPI.Service
 {
     public static class PokemonService
     {
-        public static Pokemon BuscarPorEspecie (string especie)
+        public static Pokemon BuscarPorEspecie(string especie)
         {
             var client = new RestClient($"https://pokeapi.co/api/v2/pokemon/{especie.ToLower()}");
             var request = new RestRequest(Method.GET);
