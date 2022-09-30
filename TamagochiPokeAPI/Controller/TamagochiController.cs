@@ -85,5 +85,27 @@ namespace TamagochiPokeAPI.Controller
                 }
             }
         }
+
+        private void MenuInteracao()
+        {
+            string opcaoInteracao = "0";
+            int indicePoke;
+
+            indicePoke = Mensagens.ConsultarPokemons(PokemonAdotados);
+            while (opcaoInteracao != "4")
+            {
+                opcaoInteracao = Mensagens.Interagir(PokemonAdotados[indicePoke]);
+                switch (opcaoInteracao)
+                {
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                    default:
+                        Console.WriteLine("Opção inválida");
+                        break;
+                }
+            }
+        }
     }
 }
