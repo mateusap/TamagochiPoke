@@ -43,6 +43,7 @@ namespace TamagochiPokeAPI.View
             Console.WriteLine($"{nomeJogador}, seja bem vindo ao centro de adoção!");
             Console.WriteLine("O que deseja fazer?");
             Console.WriteLine("Digite 1 para adotar um mascote virtual");
+            Console.WriteLine("Digite 2 para ver seus mascotes adotados");
             Console.WriteLine("Digite 3 para sair");
         }
         public string MenuAdocao()
@@ -50,6 +51,7 @@ namespace TamagochiPokeAPI.View
             Titulo();
             Console.WriteLine("\n\n=========================== ADOTE ===========================");
             Console.WriteLine($"{nomeJogador}, escolha um pokemon:");
+            Console.WriteLine("Caso o seu pokemon favorito não esteja listado, digite o nome dele corretamente.");
             Console.WriteLine("SCYTHER");
             Console.WriteLine("SANDSHREW");
             Console.WriteLine("PSYDUCK");
@@ -77,6 +79,31 @@ namespace TamagochiPokeAPI.View
             Console.WriteLine("Peso: " + Pokemon.weight / 10 + "kg");
             Console.WriteLine("Habilidades: ");
             foreach (Abilities habilidades in Pokemon.abilities)
+            {
+                Console.WriteLine(habilidades.ability.name.ToUpper() + " ");
+            }
+        }
+        public void MenuDetalhesAdotado(Pokemon pokemon)
+        {
+            Titulo();
+            Console.WriteLine("\n\n========================= DETALHES =========================");
+            Console.WriteLine("Nome do Pokemon: " + pokemon.name.ToUpper());
+            Console.WriteLine("Altura: " + pokemon.height / 10 + "m");
+            Console.WriteLine("Peso: " + pokemon.weight / 10 + "kg");
+            System.TimeSpan idade = DateTime.Now.Subtract(pokemon.Nascimento);
+            Console.WriteLine("Idade " +idade.Minutes + " anos virtuais de Pokemon.");
+            if (pokemon.ChecarFome())
+                Console.WriteLine($"{pokemon.name.ToUpper()} está com fome, de algo para ele comer.");
+            else
+                Console.WriteLine($"{pokemon.name.ToUpper()} está de barriga cheia, muito bem alimentado!");
+
+            if (pokemon.Humor>5)
+                Console.WriteLine($"{pokemon.name.ToUpper()} está irradiando felicidade!");
+            else
+                Console.WriteLine($"{pokemon.name.ToUpper()} está se sentindo triste, talvez devesse brincar com ele um pouco.");
+
+            Console.WriteLine("Habilidades: ");
+            foreach (Abilities habilidades in pokemon.abilities)
             {
                 Console.WriteLine(habilidades.ability.name.ToUpper() + " ");
             }
@@ -128,20 +155,22 @@ namespace TamagochiPokeAPI.View
         {
             Titulo();
             Console.WriteLine("\n\n======================= ALIMENTANDO =======================");
-            Console.WriteLine("\n\n                          (๑ᵔ⤙ᵔ๑)");
+            Console.WriteLine("\n\n                         (＾ｕ＾)");
             Console.WriteLine("Você alimentou seu Pokemon, consegue ver a satisfação no rostinho dele!");
+            Console.WriteLine();
         }
         public void Brincar()
         {
             Titulo();
             Console.WriteLine("\n\n======================= BRINCANDO =======================");
-            Console.WriteLine("\n\n                      (•ω•)八(•ヮ•)");
+            Console.WriteLine("\n\n                      ( ^)o(^ )");
             Console.WriteLine("Você brincou com seu Pokemon, a felicidade chega a transbordar!");
+            Console.WriteLine();
         }
         public void GameOver(Pokemon Pokemon)
         {
-            Console.WriteLine("\n\n======================= (っ◞‸◟ c) =======================");
-            Console.WriteLine("Seu Pokemon morreu de " + (Pokemon.Humor > 0 ? "fome" : "tristeza"));
+            Console.WriteLine("\n\n======================= (ToT) =======================");
+            Console.WriteLine("Seu Pokemon morreu de " + (Pokemon.Humor > 0 ? "fome..." : "tristeza..."));
             Console.WriteLine(@"
 
 ░██████╗░░█████╗░███╗░░░███╗███████╗  ░█████╗░██╗░░░██╗███████╗██████╗░

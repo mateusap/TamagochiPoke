@@ -37,6 +37,7 @@ namespace TamagochiPokeAPI.Controller
                         MenuAdocao();
                         break;
                     case "2":
+                        MenuInteracao();
                         break;
                     case "3":
                         jogar = 0;
@@ -64,6 +65,7 @@ namespace TamagochiPokeAPI.Controller
                     case "1":
                         pokemon = PokemonService.BuscarPorEspecie(especies);
                         Mensagens.MenuDetalhes(pokemon);
+                        Console.WriteLine("Aperte alguma tecla para continuar.");
                         Console.ReadKey();
                         Console.Clear();
                         break;
@@ -72,6 +74,7 @@ namespace TamagochiPokeAPI.Controller
                         pokemon = PokemonService.BuscarPorEspecie(especies);
                         this.PokemonAdotados.Add(pokemon);
                         Mensagens.MensagemAdocao();
+                        Console.WriteLine("Aperte alguma tecla para continuar.");
                         Console.ReadKey();
                         Console.Clear();
                         return;
@@ -92,15 +95,44 @@ namespace TamagochiPokeAPI.Controller
             int indicePoke;
 
             indicePoke = Mensagens.ConsultarPokemons(PokemonAdotados);
+            
+            Console.Clear();
             while (opcaoInteracao != "4")
             {
                 opcaoInteracao = Mensagens.Interagir(PokemonAdotados[indicePoke]);
+                Console.Clear();
                 switch (opcaoInteracao)
                 {
                     case "1":
+                        Mensagens.MenuDetalhesAdotado(PokemonAdotados[indicePoke]);
+                        Console.WriteLine("Aperte alguma tecla para continuar.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
                     case "2":
+                        PokemonAdotados[indicePoke].Alimentar();
+                        Mensagens.Alimentar();
+                        Console.WriteLine("Aperte alguma tecla para continuar.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        if (!PokemonAdotados[indicePoke].Saude())
+                            Mensagens.GameOver(PokemonAdotados[indicePoke]);
+                        
+                        break;
                     case "3":
+                        PokemonAdotados[indicePoke].Brincar();
+                        Mensagens.Brincar();
+                        Console.WriteLine("Aperte alguma tecla para continuar.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        if (!PokemonAdotados[indicePoke].Saude())
+                        {
+                            Mensagens.GameOver(PokemonAdotados[indicePoke]);
+                            
+                        }
+                        break;
                     case "4":
+                        return;
                     default:
                         Console.WriteLine("Opção inválida");
                         break;
