@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TamagochiPokeAPI.Models
 {
-    public class Pokemon
+    public class Mascote
     {
         public List<Abilities> abilities { get; set; }
         public double height { get; set; }
@@ -19,7 +19,7 @@ namespace TamagochiPokeAPI.Models
         public DateTime Nascimento { get; set; }
 
 
-        public Pokemon()
+        public Mascote()
         {
             Random random = new();
             Fome = random.Next(2, 10);

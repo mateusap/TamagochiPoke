@@ -51,11 +51,12 @@ namespace TamagochiPokeAPI.View
             Titulo();
             Console.WriteLine("\n\n=========================== ADOTE ===========================");
             Console.WriteLine($"{nomeJogador}, escolha um pokemon:");
-            Console.WriteLine("Caso o seu pokemon favorito não esteja listado, digite o nome dele corretamente.");
+            Console.WriteLine("Digite o nome corretamente, caso contrário um pokemon aleatório será escolhido!");
             Console.WriteLine("SCYTHER");
             Console.WriteLine("SANDSHREW");
             Console.WriteLine("PSYDUCK");
             Console.WriteLine("STARYU");
+            Console.WriteLine("PIKACHU");
             Console.WriteLine();
             return Console.ReadLine().ToUpper();
         }
@@ -70,40 +71,40 @@ namespace TamagochiPokeAPI.View
             Console.WriteLine();
             return Console.ReadLine();
         }
-        public void MenuDetalhes(Pokemon Pokemon)
+        public void MenuDetalhes(Mascote mascote)
         {
             Titulo();
             Console.WriteLine("\n\n========================= DETALHES =========================");
-            Console.WriteLine("Nome do Pokemon: " + Pokemon.name.ToUpper());
-            Console.WriteLine("Altura: " + Pokemon.height / 10 + "m");
-            Console.WriteLine("Peso: " + Pokemon.weight / 10 + "kg");
+            Console.WriteLine("Nome do Pokemon: " + mascote.name.ToUpper());
+            Console.WriteLine((string)("Altura: " + mascote.height / 10 + "m"));
+            Console.WriteLine((string)("Peso: " + mascote.weight / 10 + "kg"));
             Console.WriteLine("Habilidades: ");
-            foreach (Abilities habilidades in Pokemon.abilities)
+            foreach (Abilities habilidades in mascote.abilities)
             {
                 Console.WriteLine(habilidades.ability.name.ToUpper() + " ");
             }
         }
-        public void MenuDetalhesAdotado(Pokemon pokemon)
+        public void MenuDetalhesAdotado(Mascote mascote)
         {
             Titulo();
             Console.WriteLine("\n\n========================= DETALHES =========================");
-            Console.WriteLine("Nome do Pokemon: " + pokemon.name.ToUpper());
-            Console.WriteLine("Altura: " + pokemon.height / 10 + "m");
-            Console.WriteLine("Peso: " + pokemon.weight / 10 + "kg");
-            System.TimeSpan idade = DateTime.Now.Subtract(pokemon.Nascimento);
+            Console.WriteLine("Nome do Pokemon: " + mascote.name.ToUpper());
+            Console.WriteLine("Altura: " + mascote.height / 10 + "m");
+            Console.WriteLine("Peso: " + mascote.weight / 10 + "kg");
+            System.TimeSpan idade = DateTime.Now.Subtract(mascote.Nascimento);
             Console.WriteLine("Idade " +idade.Minutes + " anos virtuais de Pokemon.");
-            if (pokemon.ChecarFome())
-                Console.WriteLine($"{pokemon.name.ToUpper()} está com fome, de algo para ele comer.");
+            if (mascote.ChecarFome())
+                Console.WriteLine($"{mascote.name.ToUpper()} está com fome, de algo para ele comer.");
             else
-                Console.WriteLine($"{pokemon.name.ToUpper()} está de barriga cheia, muito bem alimentado!");
+                Console.WriteLine($"{mascote.name.ToUpper()} está de barriga cheia, muito bem alimentado!");
 
-            if (pokemon.Humor>5)
-                Console.WriteLine($"{pokemon.name.ToUpper()} está irradiando felicidade!");
+            if (mascote.Humor>5)
+                Console.WriteLine($"{mascote.name.ToUpper()} está irradiando felicidade!");
             else
-                Console.WriteLine($"{pokemon.name.ToUpper()} está se sentindo triste, talvez devesse brincar com ele um pouco.");
+                Console.WriteLine($"{mascote.name.ToUpper()} está se sentindo triste, talvez devesse brincar com ele um pouco.");
 
             Console.WriteLine("Habilidades: ");
-            foreach (Abilities habilidades in pokemon.abilities)
+            foreach (Abilities habilidades in mascote.abilities)
             {
                 Console.WriteLine(habilidades.ability.name.ToUpper() + " ");
             }
@@ -126,27 +127,29 @@ namespace TamagochiPokeAPI.View
             Console.ResetColor();
         }
 
-        public int ConsultarPokemons(List<Pokemon> Pokemons)
+        public int ConsultarPokemons(List<Mascote> mascotes)
         {
             Titulo();
             Console.WriteLine("\n\n======================= SEUS FILHOTINHOS =======================");
-            Console.WriteLine($"Você possui {Pokemons.Count} Pokemons adotados com você.");
-            for (int indicePoke = 0; indicePoke < Pokemons.Count; indicePoke++)
+            Console.WriteLine($"Você possui {mascotes.Count} Pokemons adotados com você.");
+            for (int indicePoke = 0; indicePoke < mascotes.Count; indicePoke++)
             {
-                Console.WriteLine($"{indicePoke} - {Pokemons[indicePoke].name.ToUpper()}");
+                Console.WriteLine($"{indicePoke} - {mascotes[indicePoke].name.ToUpper()}");
             }
             Console.WriteLine("Com qual Pokemon você quer interagir?");
+            Console.WriteLine($"Aperte outra tecla para voltar.");
             return Convert.ToInt32(Console.ReadLine());
+            
         }
 
-        public string Interagir(Pokemon Pokemon)
+        public string Interagir(Mascote mascote)
         {
             Titulo();
             Console.WriteLine("\n\n======================= INTERAGIR =======================");
             Console.WriteLine($"{nomeJogador}, você quer:");
-            Console.WriteLine($"1 - Saber como {Pokemon.name.ToUpper()} está");
-            Console.WriteLine($"2 - Alimentar {Pokemon.name.ToUpper()}");
-            Console.WriteLine($"3 - Brincar com {Pokemon.name.ToUpper()}");
+            Console.WriteLine($"1 - Saber como {mascote.name.ToUpper()} está");
+            Console.WriteLine($"2 - Alimentar {mascote.name.ToUpper()}");
+            Console.WriteLine($"3 - Brincar com {mascote.name.ToUpper()}");
             Console.WriteLine("4 - Voltar");
             return Console.ReadLine().ToUpper();
         }
@@ -167,10 +170,10 @@ namespace TamagochiPokeAPI.View
             Console.WriteLine("Você brincou com seu Pokemon, a felicidade chega a transbordar!");
             Console.WriteLine();
         }
-        public void GameOver(Pokemon Pokemon)
+        public void GameOver(Mascote mascote)
         {
             Console.WriteLine("\n\n======================= (ToT) =======================");
-            Console.WriteLine("Seu Pokemon morreu de " + (Pokemon.Humor > 0 ? "fome..." : "tristeza..."));
+            Console.WriteLine("Seu Pokemon morreu de " + (mascote.Humor > 0 ? "fome..." : "tristeza..."));
             Console.WriteLine(@"
 
 ░██████╗░░█████╗░███╗░░░███╗███████╗  ░█████╗░██╗░░░██╗███████╗██████╗░

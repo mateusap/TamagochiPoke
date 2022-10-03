@@ -16,3 +16,5 @@ E:\Visual Studio\TamagochiPokeAPI\TamagochiPokeAPI\obj\Debug\net6.0\refint\Tamag
 E:\Visual Studio\TamagochiPokeAPI\TamagochiPokeAPI\obj\Debug\net6.0\TamagochiPokeAPI.pdb
 E:\Visual Studio\TamagochiPokeAPI\TamagochiPokeAPI\obj\Debug\net6.0\TamagochiPokeAPI.genruntimeconfig.cache
 E:\Visual Studio\TamagochiPokeAPI\TamagochiPokeAPI\obj\Debug\net6.0\ref\TamagochiPokeAPI.dll
+E:\Visual Studio\TamagochiPokeAPI\TamagochiPokeAPI\bin\Debug\net6.0\AutoMapper.Net4.dll
+E:\Visual Studio\TamagochiPokeAPI\TamagochiPokeAPI\bin\Debug\net6.0\AutoMapper.dll
